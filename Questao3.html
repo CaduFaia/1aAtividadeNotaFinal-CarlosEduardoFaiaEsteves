@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Contato</title>
+    <style>
+        h1 { text-align: center; color: red; }
+        form { background: #fff; padding: 20px; width: 300px; margin: auto; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+        input, textarea, button { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid grey; }
+        button { background-color: purple; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: green; }
+        #feedback { margin-top: 10px; font-size: 14px; }
+        .error { color: red; }
+        .success { color: green; }
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: grey; }
+    </style>
+</head>
+<body>
+    <h1>Formulário de Contato</h1>
+    <form id="contactForm">
+        <input type="text" id="name" placeholder="Nome" required>
+        <input type="email" id="email" placeholder="E-mail" required>
+        <textarea id="message" placeholder="Mensagem" required></textarea>
+        <button type="submit">Enviar</button>
+        <div id="feedback"></div>
+    </form>
+    <script>
+        document.getElementById('contactForm').onsubmit = function(e) {
+            e.preventDefault();
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let message = document.getElementById('message').value;
+            let feedback = document.getElementById('feedback');
+            
+            if (!name || !email || !message) {
+                feedback.textContent = 'Preencha todos os campos.';
+                feedback.className = 'error';
+            }
+            else {
+                feedback.textContent = 'Mensagem enviada!';
+                feedback.className = 'success';
+                document.getElementById('contactForm').reset(); 
+            }
+        };
+    </script>
+</body>
+</html>
